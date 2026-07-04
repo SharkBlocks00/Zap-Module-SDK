@@ -1,11 +1,11 @@
 [package]
 name = "zapsdk"
-version = "0.1.3"
+version = "0.1.5"
 edition = "2021"
 authors = ["SharkBlocks00"]
 license = "MIT"
 description = "Zap module SDK"
 
 [dependencies]
-zap-sdk = { path = "../zap-sdk" }
-zap-macros = { path = "../zap-macros", version = "0.1.1" }
+zap-sdk = { path = "../zap-sdk", version = "0.1.2" }
+zap-macros = { path = "../zap-macros", version = "0.1.2" }

@@ -1,6 +1,6 @@
 [package]
 name = "zap-macros"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["SharkBlocks00"]
 edition = "2021"
 license = "MIT"
@@ -11,7 +11,7 @@ description = "Zap module SDK macros"
 proc-macro = true
 
 [dependencies]
-zap-sdk = "0.1"
+zap-sdk = { path = "../zap-sdk", version = "0.1.1" }
 syn = { version = "2", features = ["full"]}
 quote = "1"
 proc-macro2 = "1"

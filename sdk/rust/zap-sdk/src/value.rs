@@ -13,6 +13,13 @@ pub struct ZapString {
     pub length: u64,
 }
 
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct ZapArray {
+    pub items: *const ZapValue,
+    pub length: u64,
+}
+
 // generic value
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -21,6 +28,7 @@ pub union ZapValueData {
     pub floating: f64,
     pub boolean: bool,
     pub string: ZapString,
+    pub array: ZapArray,
     pub pointer: *mut c_void,
 }
 
@@ -78,6 +86,21 @@ impl ZapValue {
                 string: ZapString {
                     data: ptr,
                     length: len,
+                },
+            },
+            flags: 0,
+            reserved: [0; 6],
+        }
+    }
+
+    pub fn array(items: Vec<ZapValue>) -> Self {
+        let boxed: &'static [ZapValue] = Box::leak(items.into_boxed_slice());
+        Self {
+            ty: TYPE_ARRAY,
+            data: ZapValueData {
+                array: ZapArray {
+                    items: boxed.as_ptr(),
+                    length: boxed.len() as u64,
                 },
             },
             flags: 0,

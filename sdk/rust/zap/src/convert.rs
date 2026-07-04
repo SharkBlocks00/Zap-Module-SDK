@@ -30,8 +30,9 @@ impl IntoZapValue for Value {
             Value::Float(v) => ZapValue::float(v),
             Value::String(v) => ZapValue::owned_string(v),
 
-            Value::Array(_) => {
-                todo!("Native arrays are not implemented yet.")
+            Value::Array(items) => {
+                let zap_items: Vec<ZapValue> = items.into_iter().map(|v| v.into_zap()).collect();
+                ZapValue::array(zap_items)
             }
             Value::Object(_) => {
                 todo!("Native objects are not implemented yet.")
@@ -67,7 +68,16 @@ impl FromZapValue for Value {
                 }
 
                 TYPE_ARRAY => {
-                    todo!("Native arrays are not implemented yet.")
+                    let arr = value.data.array;
+                    if arr.items.is_null() {
+                        return Err(ZapError::NullPointer);
+                    }
+                    let slice = std::slice::from_raw_parts(arr.items, arr.length as usize);
+                    let mut values = Vec::with_capacity(slice.len());
+                    for item in slice {
+                        values.push(Value::from_zap(*item)?);
+                    }
+                    Value::Array(values)
                 }
 
                 TYPE_OBJECT => {
@@ -235,5 +245,27 @@ impl<T: FromZapValue> FromZapValue for Option<T> {
         }
 
         Ok(Some(T::from_zap(value)?))
+    }
+}
+
+impl<T: IntoZapValue> IntoZapValue for Vec<T> {
+    fn into_zap(self) -> ZapValue {
+        let items: Vec<ZapValue> = self.into_iter().map(|v| v.into_zap()).collect();
+        ZapValue::array(items)
+    }
+}
+
+impl<T: FromZapValue> FromZapValue for Vec<T> {
+    fn from_zap(value: ZapValue) -> Result<Self> {
+        match Value::from_zap(value)? {
+            Value::Array(items) => items
+                .into_iter()
+                .map(|v| T::from_zap(v.into_zap()))
+                .collect(),
+            _ => Err(ZapError::InvalidType {
+                expected: "array",
+                found: value.ty,
+            }),
+        }
     }
 }
