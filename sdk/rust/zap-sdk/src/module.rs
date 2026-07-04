@@ -8,7 +8,7 @@ pub type NativeFunction = extern "C" fn(*const ZapValue, u32) -> ZapValue;
 // Exported function
 #[repr(C)]
 pub struct ZapFunction {
-    name: *const i8,
+    pub name: *const i8,
     pub arity: u32,
     pub function: *const c_void,
 }

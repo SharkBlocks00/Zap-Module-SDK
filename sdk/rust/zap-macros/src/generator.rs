@@ -52,13 +52,29 @@ fn generate_wrappers(module: &ParsedModule) -> TokenStream {
     }
 }
 
+fn generate_constant_inits(module: &ParsedModule) -> Vec<TokenStream> {
+    module
+        .constants
+        .iter()
+        .map(|constant| {
+            let export = c_string(&constant.export_name);
+            let value = &constant.rust_name;
+            quote! {
+                ::zap_sdk::ZapConstant {
+                    name: #export.as_ptr() as *const i8,
+                    value: #value.into_zap(),
+                }
+            }
+        })
+        .collect()
+}
+
 fn generate_metadata(module: &ParsedModule) -> TokenStream {
     let function_meta = module.functions.iter().map(|func| {
         let metadata = &func.metadata_name;
         let wrapper = &func.wrapper_name;
         let export = c_string(&func.export_name);
         let arity = func.arity as u32;
-
         quote! {
             const #metadata: ::zap_sdk::ZapFunction = ::zap_sdk::ZapFunction {
                 name: #export.as_ptr() as *const i8,
@@ -67,40 +83,17 @@ fn generate_metadata(module: &ParsedModule) -> TokenStream {
             };
         }
     });
-
-    let constant_meta = module.constants.iter().map(|constant| {
-        let metadata = &constant.metadata_name;
-        let export = c_string(&constant.export_name);
-        let value = &constant.rust_name;
-
-        quote! {
-            const #metadata: ::zap_sdk::ZapConstant = ::zap_sdk::ZapConstant {
-                name: #export.as_ptr() as *const i8,
-                value: #value.into_zap(),
-            };
-        }
-    });
-
     quote! {
         #(#function_meta)*
-        #(#constant_meta)*
     }
 }
 
 fn generate_arrays(module: &ParsedModule) -> TokenStream {
     let func_count = module.functions.len();
-    let const_count = module.constants.len();
-
     let functions = module.functions.iter().map(|f| &f.metadata_name);
-    let constants = module.constants.iter().map(|c| &c.metadata_name);
-
     quote! {
         static FUNCTIONS: [::zap_sdk::ZapFunction; #func_count] = [
             #(#functions),*
-        ];
-
-        static CONSTANTS: [::zap_sdk::ZapConstant; #const_count] = [
-            #(#constants),*
         ];
     }
 }
@@ -108,17 +101,23 @@ fn generate_arrays(module: &ParsedModule) -> TokenStream {
 fn generate_init(module: &ParsedModule) -> TokenStream {
     let function_count = module.functions.len() as u32;
     let constant_count = module.constants.len() as u32;
-
+    let constant_inits = generate_constant_inits(module);
     quote! {
         #[no_mangle]
-        pub extern "C" fn zap_module_init() -> ::zap_sdk::ZapModule {
-            ::zap_sdk::ZapModule {
+        pub extern "C" fn module_init() -> *mut ::zap_sdk::ZapModule {
+            let constants: &'static [::zap_sdk::ZapConstant] = Box::leak(Box::new([
+                #(#constant_inits),*
+            ]));
+
+            let module = ::zap_sdk::ZapModule {
                 abi_version: ::zap_sdk::ABI_VERSION,
                 function_count: #function_count,
                 functions: FUNCTIONS.as_ptr(),
                 constant_count: #constant_count,
-                constants: CONSTANTS.as_ptr(),
-            }
+                constants: constants.as_ptr(),
+            };
+
+            Box::leak(Box::new(module)) as *mut _
         }
     }
 }
