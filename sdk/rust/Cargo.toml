@@ -2,5 +2,7 @@
 resolver = "3"
 
 members = [
-    "zap-sdk"
+    "zap-sdk",
+    "zap-macros",
+    "zap"
 ]

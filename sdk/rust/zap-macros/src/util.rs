@@ -11,5 +11,7 @@ pub fn invoke_name(argument_count: usize) -> TokenStream {
 }
 
 pub fn c_string(name: &str) -> proc_macro2::Literal {
-    proc_macro2::Literal::byte_string(name.as_bytes())
+    let mut bytes = name.as_bytes().to_vec();
+    bytes.push(0); // Null-terminate for C string
+    proc_macro2::Literal::byte_string(&bytes)
 }

@@ -16,7 +16,7 @@ pub struct ZapString {
 // generic value
 #[repr(C)]
 #[derive(Clone, Copy)]
-pub struct ZapValueData {
+pub union ZapValueData {
     pub integer: i64,
     pub floating: f64,
     pub boolean: bool,
@@ -123,11 +123,5 @@ impl fmt::Display for ZapValue {
                 other => write!(f, "ZapValue(UnknownType({}))", other),
             }
         }
-    }
-}
-
-impl fmt::Display for ZapValue {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        fmt::Debug::fmt(self, f)
     }
 }
