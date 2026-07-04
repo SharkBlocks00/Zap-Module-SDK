@@ -1,0 +1,8 @@
+[workspace]
+resolver = "3"
+
+members = [
+    "sdk/rust/zap-sdk",
+    "sdk/rust/zap-macros",
+    "sdk/rust/zap"
+]

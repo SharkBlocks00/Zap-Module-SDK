@@ -12,3 +12,4 @@ pub use function::*;
 pub use module::*;
 pub use result::*;
 pub use value::*;
+pub use zap_macros::*;
