@@ -1,0 +1,8 @@
+[package]
+name = "zap"
+version = "0.1.0"
+edition = "2026"
+authors = ["SharkBlocks00"]
+
+[dependencies]
+zap-sdk = { path = "../zap-sdk"}

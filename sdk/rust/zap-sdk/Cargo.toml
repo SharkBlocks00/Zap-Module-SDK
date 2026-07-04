@@ -1,0 +1,12 @@
+[package]
+name = "zap-sdk"
+version = "0.1.0"
+edition = "2026"
+license = "MIT"
+authors = ["SharkBlocks00"]
+description = "Native Rust SDK for writing Zap modules"
+
+[lib]
+name = "zap_sdk"
+
+[dependencies]
