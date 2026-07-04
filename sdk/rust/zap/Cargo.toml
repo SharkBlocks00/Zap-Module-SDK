@@ -5,4 +5,4 @@ edition = "2021"
 authors = ["SharkBlocks00"]
 
 [dependencies]
-zap-sdk = { path = "../zap-sdk"}
+zap-sdk = "0.1"

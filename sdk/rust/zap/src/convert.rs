@@ -7,7 +7,7 @@ use zap_sdk::{
     TYPE_STRING,
 };
 
-use crate::{Error, Result, Value};
+use crate::{Result, Value, ZapError};
 
 /// Converts a rust value into abi value
 pub trait IntoZapValue {
@@ -56,12 +56,12 @@ impl FromZapValue for Value {
                     let ptr = value.data.string.data;
 
                     if ptr.is_null() {
-                        return Err(Error::NullPointer);
+                        return Err(ZapError::NullPointer);
                     }
 
                     let s = CStr::from_ptr(ptr)
                         .to_str()
-                        .map_err(|_| Error::InvalidUtf8)?;
+                        .map_err(|_| ZapError::InvalidUtf8)?;
 
                     Value::String(s.to_owned())
                 }
@@ -75,11 +75,17 @@ impl FromZapValue for Value {
                 }
 
                 TYPE_FUNCTION => {
-                    return Err(Error::InvalidType);
+                    return Err(ZapError::InvalidType {
+                        expected: "function",
+                        found: value.ty,
+                    });
                 }
 
                 _ => {
-                    return Err(Error::InvalidType);
+                    return Err(ZapError::InvalidType {
+                        expected: "function",
+                        found: value.ty,
+                    });
                 }
             })
         }
@@ -135,7 +141,7 @@ impl IntoZapValue for String {
 
 impl IntoZapValue for &str {
     fn into_zap(self) -> ZapValue {
-        ZapValue::owned_string(self)
+        Value::String(self.to_owned()).into_zap()
     }
 }
 
@@ -154,7 +160,10 @@ impl FromZapValue for bool {
     fn from_zap(value: ZapValue) -> Result<Self> {
         match Value::from_zap(value)? {
             Value::Bool(v) => Ok(v),
-            _ => Err(Error::InvalidType),
+            _ => Err(ZapError::InvalidType {
+                expected: "bool",
+                found: value.ty,
+            }),
         }
     }
 }
@@ -168,7 +177,10 @@ macro_rules! impl_int_from {
 
                         Value::Int(v) => Ok(v as $t),
 
-                        _ => Err(Error::InvalidType),
+                        _ => Err(ZapError::InvalidType {
+                            expected: "int",
+                            found: value.ty,
+                        }   ),
                     }
                 }
             }
@@ -190,7 +202,10 @@ macro_rules! impl_float_from {
 
                         Value::Int(v) => Ok(v as $t),
 
-                        _ => Err(Error::InvalidType),
+                        _ => Err(ZapError::InvalidType {
+                            expected: "float or int",
+                            found: value.ty,
+                        }),
                     }
                 }
             }
@@ -205,7 +220,10 @@ impl FromZapValue for String {
         match Value::from_zap(value)? {
             Value::String(v) => Ok(v),
 
-            _ => Err(Error::InvalidType),
+            _ => Err(ZapError::InvalidType {
+                expected: "string",
+                found: value.ty,
+            }),
         }
     }
 }

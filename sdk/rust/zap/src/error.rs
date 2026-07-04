@@ -20,6 +20,9 @@ pub enum ZapError {
 
     /// Generic runtime error.
     Runtime(String),
+
+    /// Null pointer error.
+    NullPointer,
 }
 
 impl fmt::Display for ZapError {
@@ -47,6 +50,10 @@ impl fmt::Display for ZapError {
 
             Self::Runtime(msg) => {
                 write!(f, "{msg}")
+            }
+
+            Self::NullPointer => {
+                write!(f, "null pointer error")
             }
         }
     }
