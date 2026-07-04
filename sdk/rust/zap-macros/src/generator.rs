@@ -1,7 +1,7 @@
-use proc_macro2::TokenStream;
-use quote::quote;
 use crate::model::ParsedModule;
 use crate::util::{c_string, invoke_name};
+use proc_macro2::TokenStream;
+use quote::quote;
 
 pub fn generate(module: &ParsedModule) -> TokenStream {
     let wrappers = generate_wrappers(module);
@@ -80,7 +80,7 @@ fn generate_metadata(module: &ParsedModule) -> TokenStream {
         let export_name_c = c_string(&constant.export_name);
         let original_name = &constant.rust_name;
 
-        // If ZapValue cannot be const-initialized via trait, we use lazy static evaluation. 
+        // If ZapValue cannot be const-initialized via trait, we use lazy static evaluation.
         // We will try lazy initialization later if a direct assignment fails.
         // Since we don't know the exact mechanism zap uses for constants, let's just assign.
         // If into_zap() isn't const, then `const #meta_name` won't compile, so we will generate it inline in the arrays or as a function if needed.
@@ -114,7 +114,7 @@ fn generate_arrays(module: &ParsedModule) -> TokenStream {
                 #(#func_names),*
             ];
 
-            // Warning: `into_zap` may not be const. Using a function returning the array. 
+            // Warning: `into_zap` may not be const. Using a function returning the array.
             // Wait! The user asked for exactly `static CONSTANTS: [ZapConstant; 3] = [ ... ];`
             // Let's output it exactly as requested.
             static CONSTANTS: [::zap_sdk::module::ZapConstant; #const_count] = [

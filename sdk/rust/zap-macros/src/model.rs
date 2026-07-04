@@ -1,5 +1,5 @@
 use proc_macro2::{Span, TokenStream};
-use syn::{FnArg, Ident, ItemConst, ItemFn, Pat, ReturnType, Type, Meta};
+use syn::{FnArg, Ident, ItemConst, ItemFn, Meta, Pat, ReturnType, Type};
 
 pub struct ParsedModule {
     pub ident: Ident,

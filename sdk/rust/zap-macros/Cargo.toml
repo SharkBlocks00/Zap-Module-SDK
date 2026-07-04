@@ -4,11 +4,14 @@ version = "0.1.0"
 authors = ["SharkBlocks00"]
 edition = "2021"
 license = "MIT"
+description = "Zap module SDK macros"
+
 
 [lib]
 proc-macro = true
 
 [dependencies]
+zapsdk = "0.1"
 syn = { version = "2", features = ["full"]}
 quote = "1"
 proc-macro2 = "1"

@@ -1,7 +1,7 @@
+use crate::model::{ExportedConstant, ExportedFunction, ParsedModule};
 use proc_macro2::TokenStream;
 use quote::ToTokens;
 use syn::{Item, ItemMod};
-use crate::model::{ExportedConstant, ExportedFunction, ParsedModule};
 
 pub fn parse(module: ItemMod) -> syn::Result<ParsedModule> {
     let ident = module.ident.clone();
@@ -15,7 +15,10 @@ pub fn parse(module: ItemMod) -> syn::Result<ParsedModule> {
         for item in items {
             match item {
                 Item::Fn(item_fn) => {
-                    let has_export = item_fn.attrs.iter().any(|attr| attr.path().is_ident("zap_export"));
+                    let has_export = item_fn
+                        .attrs
+                        .iter()
+                        .any(|attr| attr.path().is_ident("zap_export"));
                     if has_export {
                         let parsed = ExportedFunction::parse(&module_name, item_fn)?;
                         passthrough_items.push(parsed.item.to_token_stream());
@@ -25,7 +28,10 @@ pub fn parse(module: ItemMod) -> syn::Result<ParsedModule> {
                     }
                 }
                 Item::Const(item_const) => {
-                    let has_constant = item_const.attrs.iter().any(|attr| attr.path().is_ident("zap_constant"));
+                    let has_constant = item_const
+                        .attrs
+                        .iter()
+                        .any(|attr| attr.path().is_ident("zap_constant"));
                     if has_constant {
                         let parsed = ExportedConstant::parse(&module_name, item_const)?;
                         passthrough_items.push(parsed.item.to_token_stream());

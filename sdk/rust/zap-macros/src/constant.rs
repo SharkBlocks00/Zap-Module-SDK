@@ -1,7 +1,7 @@
+use crate::model::ExportedConstant;
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemConst};
-use crate::model::ExportedConstant;
 
 /// Expands the `#[zap_constant]` attribute.
 ///
@@ -17,8 +17,6 @@ pub fn expand(_attr: TokenStream, item: TokenStream) -> TokenStream {
                 #clean
             })
         }
-        Err(err) => {
-            TokenStream::from(err.to_compile_error())
-        }
+        Err(err) => TokenStream::from(err.to_compile_error()),
     }
 }
