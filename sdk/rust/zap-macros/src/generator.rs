@@ -61,7 +61,7 @@ fn generate_metadata(module: &ParsedModule) -> TokenStream {
 
         quote! {
             const #metadata: ::zap_sdk::ZapFunction = ::zap_sdk::ZapFunction {
-                name: #export.as_ptr(),
+                name: #export.as_ptr() as *const i8,
                 arity: #arity,
                 function: #wrapper as *const ::std::ffi::c_void,
             };
@@ -75,7 +75,7 @@ fn generate_metadata(module: &ParsedModule) -> TokenStream {
 
         quote! {
             const #metadata: ::zap_sdk::ZapConstant = ::zap_sdk::ZapConstant {
-                name: #export.as_ptr(),
+                name: #export.as_ptr() as *const i8,
                 value: #value.into_zap(),
             };
         }

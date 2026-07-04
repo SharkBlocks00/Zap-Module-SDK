@@ -31,3 +31,6 @@ pub struct ZapModule {
     pub constant_count: u32,
     pub constants: *const ZapConstant,
 }
+
+unsafe impl Sync for ZapFunction {}
+unsafe impl Sync for ZapConstant {}

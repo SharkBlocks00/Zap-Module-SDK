@@ -61,7 +61,7 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
+        let a = A::from_zap(args[0])?;
 
         Ok(function(a))
     })
@@ -82,8 +82,8 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
 
         Ok(function(a, b))
     })
@@ -105,9 +105,9 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
 
         Ok(function(a, b, c))
     })
@@ -130,10 +130,10 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
 
         Ok(function(a, b, c, d))
     })
@@ -157,11 +157,11 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
 
         Ok(function(a, b, c, d, e))
     })
@@ -186,12 +186,12 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
 
         Ok(function(a, b, c, d, e, f))
     })
@@ -217,13 +217,13 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
 
         Ok(function(a, b, c, d, e, f, g))
     })
@@ -250,14 +250,14 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
 
         Ok(function(a, b, c, d, e, f, g, h))
     })
@@ -285,15 +285,15 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i))
     })
@@ -322,16 +322,16 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j))
     })
@@ -361,17 +361,17 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
-        let k = K::from_zap(&args[10])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
+        let k = K::from_zap(args[10])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j, k))
     })
@@ -402,18 +402,18 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
-        let k = K::from_zap(&args[10])?;
-        let l = L::from_zap(&args[11])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
+        let k = K::from_zap(args[10])?;
+        let l = L::from_zap(args[11])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j, k, l))
     })
@@ -445,19 +445,19 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
-        let k = K::from_zap(&args[10])?;
-        let l = L::from_zap(&args[11])?;
-        let m = M::from_zap(&args[12])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
+        let k = K::from_zap(args[10])?;
+        let l = L::from_zap(args[11])?;
+        let m = M::from_zap(args[12])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j, k, l, m))
     })
@@ -490,20 +490,20 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
-        let k = K::from_zap(&args[10])?;
-        let l = L::from_zap(&args[11])?;
-        let m = M::from_zap(&args[12])?;
-        let n = N::from_zap(&args[13])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
+        let k = K::from_zap(args[10])?;
+        let l = L::from_zap(args[11])?;
+        let m = M::from_zap(args[12])?;
+        let n = N::from_zap(args[13])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j, k, l, m, n))
     })
@@ -537,21 +537,21 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
-        let k = K::from_zap(&args[10])?;
-        let l = L::from_zap(&args[11])?;
-        let m = M::from_zap(&args[12])?;
-        let n = N::from_zap(&args[13])?;
-        let o = O::from_zap(&args[14])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
+        let k = K::from_zap(args[10])?;
+        let l = L::from_zap(args[11])?;
+        let m = M::from_zap(args[12])?;
+        let n = N::from_zap(args[13])?;
+        let o = O::from_zap(args[14])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o))
     })
@@ -586,22 +586,22 @@ where
 
         let args = arguments(args, argc);
 
-        let a = A::from_zap(&args[0])?;
-        let b = B::from_zap(&args[1])?;
-        let c = C::from_zap(&args[2])?;
-        let d = D::from_zap(&args[3])?;
-        let e = E::from_zap(&args[4])?;
-        let f = F::from_zap(&args[5])?;
-        let g = G::from_zap(&args[6])?;
-        let h = H::from_zap(&args[7])?;
-        let i = I::from_zap(&args[8])?;
-        let j = J::from_zap(&args[9])?;
-        let k = K::from_zap(&args[10])?;
-        let l = L::from_zap(&args[11])?;
-        let m = M::from_zap(&args[12])?;
-        let n = N::from_zap(&args[13])?;
-        let o = O::from_zap(&args[14])?;
-        let p = P::from_zap(&args[15])?;
+        let a = A::from_zap(args[0])?;
+        let b = B::from_zap(args[1])?;
+        let c = C::from_zap(args[2])?;
+        let d = D::from_zap(args[3])?;
+        let e = E::from_zap(args[4])?;
+        let f = F::from_zap(args[5])?;
+        let g = G::from_zap(args[6])?;
+        let h = H::from_zap(args[7])?;
+        let i = I::from_zap(args[8])?;
+        let j = J::from_zap(args[9])?;
+        let k = K::from_zap(args[10])?;
+        let l = L::from_zap(args[11])?;
+        let m = M::from_zap(args[12])?;
+        let n = N::from_zap(args[13])?;
+        let o = O::from_zap(args[14])?;
+        let p = P::from_zap(args[15])?;
 
         Ok(function(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p))
     })

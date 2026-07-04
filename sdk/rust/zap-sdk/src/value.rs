@@ -125,3 +125,11 @@ impl fmt::Display for ZapValue {
         }
     }
 }
+
+// SAFETY: sync is required so constant and function can live in static tables.
+// IF ZapValue is EVER shared across threads while wrapping a live
+// Array/Object/Function pointer, the CALLER is responsible for ensuring
+// the underlying data is thread-safe.
+
+unsafe impl Sync for ZapValueData {}
+unsafe impl Sync for ZapValue {}
